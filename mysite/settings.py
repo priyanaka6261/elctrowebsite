@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
-
+from decouple import config
+SECRET_KEY = config("SECRET_KEY")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -124,6 +125,5 @@ STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STRIPE_PUBLIC_KEY='pk_test_51RrDy5JefQwonyf2qBbgpjEotbru9MnHpSCWP7yHNdGoVOJmuwSw9RtqOwxqdgdnbU5o9MiOZ1Ri1ivo17ZjGMvp003iPQClbh'
-STRIPE_PRIVATE_KEY='sk_test_51RrDy5JefQwonyf22kci9svl26CIYI0299K8OuluK1Vk2NSYT2941bwc8soO38RqesaN19WIlIg9imbcCmHqGMke00kM3CfuHN'
 
  

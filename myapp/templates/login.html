@@ -1,0 +1,102 @@
+{% extends 'header.html'%}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	
+
+    </head>
+	<body>
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">login</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="#">Home</a></li>
+							<li class="active">login</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /BREADCRUMB -->
+		
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<div class="col-md-7">
+						<!-- Billing Details -->
+						{% if msg %}
+						    <b style="color: blue;">{{msg}}</b>
+						{% endif %}
+
+						<form name="login" method="POST" action="{% url 'login' %}">
+							{% csrf_token %}
+							
+							<div class="form-group">
+								<input class="input" type="email" id="Email" name="email" placeholder="Email">
+								<span id="email_error"></span>
+
+							</div>
+							<div class="form-group">
+								<input class="input" type="password" name="password" placeholder="Password">
+							</div>
+							
+							
+							<div class="form-group">
+								<input class="btn btn-primary" type="submit" name="action" value="login" >
+							
+							</div>
+							<div class="form-group">
+								<input class="btn btn-primary" type="submit"  name="forgot password" value="forgot password">
+								
+
+							</div>
+
+
+							
+						</div>
+						<!-- /Billing Details -->
+
+						
+		<!-- /SECTION -->
+
+	<script>
+		$("#email").change(function () {
+          var email = $(this).val();
+
+          $.ajax({
+            url: "/ajax/validate_email/",  // Django URL
+            data: {
+                'email': email
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (!data.is_taken) {
+                    // Optional: highlight the input box
+                    // document.getElementById("email").style.border = "5px solid red";
+                    document.getElementById("email_error").innerHTML = "This Email ID is NOT already registered";
+                } else {
+                    document.getElementById("email_error").innerHTML = "";
+                }
+            }
+        });
+    });
+</script>
+
+		
+	</body>
+</html>
+{% endblock %}

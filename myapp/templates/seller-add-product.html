@@ -1,0 +1,85 @@
+{% extends 'seller-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	
+
+    </head>
+	<body>
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">Add Products</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="#">Home</a></li>
+							<li class="active">Add Products</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /BREADCRUMB -->
+		
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<div class="col-md-7">
+						<!-- Billing Details -->
+						{% if msg %}
+						    <b style="color: blue;">{{msg}}</b>
+						{% endif %}
+
+						<form name="signup" method="POST" action="{% url 'seller-add-product' %} " enctype="multipart/form-data">
+
+							{% csrf_token %}
+							<div class="form-group">
+								<select class="input" name="product_category">
+									<option>--select product categories---</option>
+									<option value="Laptop"> Laptop</option>
+									<option value="Acsessories"> Acsessories</option>
+									<option value="camera"> camera</option>
+
+								</select>
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="product_name" placeholder="Product Name">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="product_price" placeholder="Product Price">
+							</div>
+							
+							<div class="form-group">
+								<input class="input" type="text" name="product_desc" placeholder="Product Description">
+							</div>
+							
+							<div class="form-group">
+								<input class="input" type="file" name="product_image">
+							</div>
+							<div class="form-group">
+								<input class="btn btn-primary" type="submit" name="action" value="Add Product" >
+							</div>
+
+							
+						</div>
+						<!-- /Billing Details -->
+
+						
+		<!-- /SECTION -->
+
+		
+	</body>
+</html>
+{% endblock %}

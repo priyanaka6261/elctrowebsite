@@ -12,12 +12,17 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
-from decouple import config
-SECRET_KEY = config("SECRET_KEY")
+from dotenv import load_dotenv
+load_dotenv()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+SECRET_KEY = os.getenv("SECRET_KEY")
+STRIPE_PRIVATE_KEY = os.getenv("STRIPE_PRIVATE_KEY")
+DEBUG = os.getenv("DEBUG", "False") == "True"
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -124,6 +129,4 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STRIPE_PUBLIC_KEY='pk_test_51RrDy5JefQwonyf2qBbgpjEotbru9MnHpSCWP7yHNdGoVOJmuwSw9RtqOwxqdgdnbU5o9MiOZ1Ri1ivo17ZjGMvp003iPQClbh'
-
  
